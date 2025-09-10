@@ -41,5 +41,19 @@ async function deleteData(endpoint,id) {
   }
   
 }
+async function patchData(endpoint,obj,id) {
+  try {
+    const response = await fetch(`http://localhost:3001/${endpoint}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    return response.json();
+  } catch (error) {
+    console.error("Error en patchData:", error);
+  }
+}
 
-export { postData, getData ,deleteData};
+export { postData, getData ,deleteData,patchData};

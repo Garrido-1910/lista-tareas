@@ -1,16 +1,10 @@
 {
-  "tareas": [
+  "usuarios": [
     {
-      "id": "05a8",
-      "titulo": "",
-      "descripcion": "",
-      "estado": "pendiente"
-    },
-    {
-      "id": "6beb",
-      "titulo": "",
-      "descripcion": "",
-      "estado": "pendiente"
+      "id": "23d0",
+      "usuario": "Christopher",
+      "clave": "123456"
     }
-  ]
+  ],
+  "tareas": []
 }

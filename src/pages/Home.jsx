@@ -2,6 +2,7 @@ import InputTarea from "../componentes/InputTarea";
 import Lista from "../componentes/Lista";  
 import { useEffect, useState } from "react";
 import { getData } from "../servios/Servicios";
+import FormularioRegistro from "../componentes/FormularioRegistro";
 function Home() {
   const [tareas, setTareas] = useState([]);
   useEffect (()=>{
@@ -14,10 +15,9 @@ function Home() {
         }
     }
     cargarTareas();
-}, []);
+}, [tareas]);
   return (
     <div>
-      <h1>Tareas</h1>
       <InputTarea/>
       <Lista listaTareas={tareas} />
     </div>
