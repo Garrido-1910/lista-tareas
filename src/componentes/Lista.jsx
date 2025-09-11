@@ -1,52 +1,53 @@
+import React from "react";
 import Tareas from "./Tareas";
 import "../estilos/Lista.css";
-import { deleteData, patchData } from "../servios/Servicios.js"; 
+import { deleteData, patchData } from "../servios/Servicios.js";
 
-const Lista = ({ listaTareas, setListaTareas }) => {
-  
-  async function eliminar(id) {
+const Lista = ({ listaTareas = [], setListaTareas }) => {
+  const eliminar = async (id) => {
     try {
       await deleteData("tareas", id);
-      setListaTareas(listaTareas.filter((tarea) => tarea.id !== id));
+      setListaTareas((prev) => prev.filter((tarea) => tarea.id !== id));
       console.log("✅ Tarea eliminada con éxito");
     } catch (error) {
       console.error("❌ Error al eliminar tarea:", error);
     }
-  }
+  };
 
-  async function cambiarEstado(id, estadoActual) {
+  const cambiarEstado = async (id, estadoActual) => {
     const nuevoEstado = estadoActual === "pendiente" ? "completada" : "pendiente";
 
     try {
       await patchData("tareas", { estado: nuevoEstado }, id);
-      const nuevasTareas = listaTareas.map((tarea) =>
-        tarea.id === id ? { ...tarea, estado: nuevoEstado } : tarea
+
+      setListaTareas((prev) =>
+        prev.map((tarea) =>
+          tarea.id === id ? { ...tarea, estado: nuevoEstado } : tarea
+        )
       );
-      setListaTareas(nuevasTareas);
 
       console.log(`✅ Estado de la tarea ${id} cambiado a ${nuevoEstado}`);
     } catch (error) {
       console.error("❌ Error al cambiar estado:", error);
-      alert("No se pudo cambiar el estado de la tarea.");
     }
+  };
+
+  if (!listaTareas?.length) {
+    return <p className="lista-vacia">No hay tareas aún</p>;
   }
 
   return (
     <div className="lista-container">
-      {listaTareas.length === 0 ? (
-        <p className="lista-vacia">No hay tareas aún</p>
-      ) : (
-        listaTareas.map((tarea) => (
-          <Tareas
-            key={tarea.id}
-            titulo={tarea.titulo}
-            descripcion={tarea.descripcion}
-            estado={tarea.estado}
-            clickEliminar={() => eliminar(tarea.id)}
-            clickEstado={() => cambiarEstado(tarea.id, tarea.estado)}
-          />
-        ))
-      )}
+      {listaTareas.map(({ id, titulo, descripcion, estado }) => (
+        <Tareas
+          key={id}
+          titulo={titulo}
+          descripcion={descripcion}
+          estado={estado}
+          clickEliminar={() => eliminar(id)}
+          clickEstado={() => cambiarEstado(id, estado)}
+        />
+      ))}
     </div>
   );
 };
