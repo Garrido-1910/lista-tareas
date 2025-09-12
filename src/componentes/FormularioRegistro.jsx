@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../estilos/FormularioRegistro.css";
 import { postData } from "../servios/Servicios";
-
+import {useNavigate} from "react-router-dom"
 const FormularioRegistro = () => {
   const [usuario, setUsuario] = useState("");
   const [clave, setClave] = useState("");
   const [confirmClave, setConfirmClave] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate()
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -26,61 +26,61 @@ const FormularioRegistro = () => {
       setError("Las contraseñas no coinciden");
       return;
     }
+
     const objUsuario = {
-      usuario:usuario,
-      clave:clave
-    }
-    const peticion = await postData("usuarios",objUsuario)
+      usuario: usuario,
+      clave: clave,
+    };
+    const peticion = await postData("usuarios", objUsuario);
     console.log(peticion);
-    
+
     setError("");
     setLoading(true);
-
-
-    // limpiar campos
     setUsuario("");
     setClave("");
     setConfirmClave("");
     setLoading(false);
+    navigate("/inicio")
   }
 
   return (
-    <form  className="form-registro">
-      <h2>Registro</h2>
+    <form id="formRegistro" className="form-registro" onSubmit={handleSubmit}>
+      <h2 id="tituloRegistro">Registro</h2>
 
-      <label>
-        Nombre de usuario
-        <input
-          type="text"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          placeholder="Ingrese su usuario"
-        />
-      </label>
+      <label htmlFor="inputUsuario">Nombre de usuario</label>
+      <input
+        id="inputUsuario"
+        type="text"
+        value={usuario}
+        onChange={(e) => setUsuario(e.target.value)}
+        placeholder="Ingrese su usuario"
+      />
 
-      <label>
-        Contraseña
-        <input
-          type="password"
-          value={clave}
-          onChange={(e) => setClave(e.target.value)}
-          placeholder="Ingrese su contraseña"
-        />
-      </label>
+      <label htmlFor="inputClave">Contraseña</label>
+      <input
+        id="inputClave"
+        type="password"
+        value={clave}
+        onChange={(e) => setClave(e.target.value)}
+        placeholder="Ingrese su contraseña"
+      />
 
-      <label>
-        Confirmar contraseña
-        <input
-          type="password"
-          value={confirmClave}
-          onChange={(e) => setConfirmClave(e.target.value)}
-          placeholder="Confirme su contraseña"
-        />
-      </label>
+      <label htmlFor="inputConfirmClave">Confirmar contraseña</label>
+      <input
+        id="inputConfirmClave"
+        type="password"
+        value={confirmClave}
+        onChange={(e) => setConfirmClave(e.target.value)}
+        placeholder="Confirme su contraseña"
+      />
 
-      {error && <p className="form-error">{error}</p>}
+      {error && <p id="mensajeErrorRegistro" className="form-error">{error}</p>}
 
-      <button type="button" onClick={handleSubmit} disabled={loading}>
+      <button
+        id="btnRegistrarse"
+        type="submit"
+        disabled={loading}
+      >
         {loading ? "Registrando..." : "Registrarse"}
       </button>
     </form>

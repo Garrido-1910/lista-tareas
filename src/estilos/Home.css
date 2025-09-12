@@ -1,0 +1,15 @@
+.bolita-perfil{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 20px;
+}
+.mov-perfil{
+    position: absolute;
+    top: 10px;
+    right:1px;
+}
+.contenedor-todo{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}

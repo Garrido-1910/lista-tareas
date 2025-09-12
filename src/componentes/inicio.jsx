@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import "../estilos/FormularioLogin.css";
-import { getData } from "../servios/Servicios"; // 👈 asegúrate de tener este servicio implementado
+import "../estilos/Login.css";
+import { getData } from "../servios/Servicios";
+import { useNavigate } from "react-router-dom";
 
-const FormularioLogin = ({ onLogin }) => {
+const Inicio = ({ onLogin }) => {
   const [usuario, setUsuario] = useState("");
   const [clave, setClave] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -19,19 +21,16 @@ const FormularioLogin = ({ onLogin }) => {
     try {
       setLoading(true);
       setError("");
-
-      // 📌 Obtenemos todos los usuarios desde la API
       const usuarios = await getData("usuarios");
-
-      // 📌 Verificamos si hay coincidencia
       const usuarioValido = usuarios.find(
         (u) => u.usuario === usuario && u.clave === clave
       );
 
       if (usuarioValido) {
         console.log("✅ Login correcto:", usuarioValido);
-        onLogin?.(usuarioValido); // opcional: pasar usuario al padre
-        localStorage.setItem("usuario", JSON.stringify(usuarioValido)); // guardar sesión
+        onLogin?.(usuarioValido);
+        localStorage.setItem("usuario", JSON.stringify(usuarioValido));
+        navigate("/principal");
       } else {
         setError("❌ Usuario o contraseña incorrectos");
       }
@@ -44,36 +43,42 @@ const FormularioLogin = ({ onLogin }) => {
   }
 
   return (
-    <form className="form-login" onSubmit={handleLogin}>
-      <h2>Iniciar Sesión</h2>
+    <form id="formLogin" className="form-login" onSubmit={handleLogin}>
+      <h2 id="tituloLogin">Iniciar Sesión</h2>
 
-      <label>
+      <label id="labelUsuario" htmlFor="inputUsuario">
         Usuario
-        <input
-          type="text"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          placeholder="Ingrese su usuario"
-        />
       </label>
+      <input
+        id="inputUsuario"
+        type="text"
+        value={usuario}
+        onChange={(e) => setUsuario(e.target.value)}
+        placeholder="Ingrese su usuario"
+      />
 
-      <label>
+      <label id="labelClave" htmlFor="inputClave">
         Contraseña
-        <input
-          type="password"
-          value={clave}
-          onChange={(e) => setClave(e.target.value)}
-          placeholder="Ingrese su contraseña"
-        />
       </label>
+      <input
+        id="inputClave"
+        type="password"
+        value={clave}
+        onChange={(e) => setClave(e.target.value)}
+        placeholder="Ingrese su contraseña"
+      />
 
-      {error && <p className="form-error">{error}</p>}
+      {error && (
+        <p id="mensajeErrorLogin" className="form-error">
+          {error}
+        </p>
+      )}
 
-      <button type="submit" disabled={loading}>
+      <button id="btnIngresar" type="submit" disabled={loading}>
         {loading ? "Ingresando..." : "Ingresar"}
       </button>
     </form>
   );
 };
 
-export default FormularioLogin;
+export default Inicio;

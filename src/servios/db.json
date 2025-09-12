@@ -4,7 +4,44 @@
       "id": "23d0",
       "usuario": "Christopher",
       "clave": "123456"
+    },
+    {
+      "id": "449e",
+      "usuario": "Christopher",
+      "clave": "a123456"
+    },
+    {
+      "id": "907f",
+      "usuario": "profe rico",
+      "clave": "aña12345"
+    },
+    {
+      "id": "e89c",
+      "usuario": "profe rico",
+      "clave": "12345678"
+    },
+    {
+      "id": "a412",
+      "usuario": "casa",
+      "clave": "casacasa"
+    },
+    {
+      "id": "5eae",
+      "usuario": "casacasa",
+      "clave": "casacasa"
+    },
+    {
+      "id": "bdd0",
+      "usuario": "arroz",
+      "clave": "123456"
     }
   ],
-  "tareas": []
+  "tareas": [
+    {
+      "id": "6738",
+      "titulo": "jfpobkgro",
+      "descripcion": "sdkvbmtkhbrmtkf",
+      "estado": "pendiente"
+    }
+  ]
 }

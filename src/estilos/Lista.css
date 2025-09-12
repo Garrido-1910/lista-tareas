@@ -1,29 +1,110 @@
-/* Contenedor general de la lista */
-.lista-container {
+/* ====== Contenedor principal de la lista ====== */
+#contenedorLista {
   max-width: 700px;
-  margin: 20px auto;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding: 0 10px;
 }
 
-/* Animación al renderizar */
-.lista-container > * {
-  animation: fadeIn 0.3s ease-in-out;
+/* ====== Mensaje de lista vacía ====== */
+#mensajeListaVacia {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding: 20px 0;
 }
 
-/* Animación suave */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
+/* ====== Cada tarea individual ====== */
+.tarea-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px 20px;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.tarea-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* ====== Diferenciación por estado ====== */
+.tarea-item.pendiente {
+  border-left: 5px solid #ffc107; /* amarillo */
+}
+
+.tarea-item.completada {
+  border-left: 5px solid #28a745; /* verde */
+  background-color: #e6f4ea;
+}
+
+/* ====== Contenido de la tarea ====== */
+.tarea-contenido {
+  flex-grow: 1;
+}
+
+.tarea-titulo {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.tarea-descripcion {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* ====== Botones de acción ====== */
+.tarea-acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.tarea-estado,
+.tarea-editar,
+.tarea-eliminar {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.1s ease;
+}
+
+.tarea-estado:hover,
+.tarea-editar:hover,
+.tarea-eliminar:hover {
+  transform: scale(1.2);
+}
+
+.tarea-estado {
+  color: #007bff;
+}
+
+.tarea-editar {
+  color: #ffc107;
+}
+
+.tarea-eliminar {
+  color: #dc3545;
+}
+
+/* ====== Responsividad ====== */
+@media (max-width: 500px) {
+  .tarea-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .tarea-acciones {
+    align-self: flex-end;
   }
 }
