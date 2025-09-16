@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../estilos/Tareas.css";
 
 function FormatoTareas({id,titulo,descripcion,estado,clickEditar,clickEliminar,clickEstado}) {

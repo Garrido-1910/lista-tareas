@@ -11,6 +11,7 @@ function Home() {
   const [tareasCompletadas, setTareasCompletadas] = useState([]);
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
+
   const cerrarModal = () => {
     setModal(false)
   }
@@ -54,6 +55,10 @@ function Home() {
               descripcion={tarea.descripcion}
               clickEliminar={() => deleteTarea(tarea.id)}
               clickEstado={() => cambiarEstado(tarea.id, tarea.estado)}
+                 clickEditar={() => {
+                setModal(true)
+                localStorage.setItem("idTarea", tarea.id)
+              }}  
             />
 
           </>
@@ -86,7 +91,6 @@ function Home() {
     <div className="item">
        <div  onClick={()=>navigate("/perfil")} className="mov-perfil">
         <div className="bolita-perfil">
-
         </div>
       </div>
     </div>

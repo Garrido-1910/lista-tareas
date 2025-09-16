@@ -1,20 +1,33 @@
+/* ====== Animación de aparición ====== */
+@keyframes fadeInTask {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ====== Contenedor principal de la lista ====== */
 #contenedorLista {
-  max-width: 700px;
-  margin: 30px auto;
+  max-width: 720px;
+  margin: 35px auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 0 10px;
+  gap: 18px;
+  padding: 0 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ====== Mensaje de lista vacía ====== */
 #mensajeListaVacia {
   text-align: center;
   font-size: 16px;
-  color: #666;
+  color: #777;
   font-style: italic;
-  padding: 20px 0;
+  padding: 25px 0;
 }
 
 /* ====== Cada tarea individual ====== */
@@ -22,89 +35,113 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  padding: 15px 20px;
-  transition: transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  animation: fadeInTask 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .tarea-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
 }
 
 /* ====== Diferenciación por estado ====== */
 .tarea-item.pendiente {
-  border-left: 5px solid #ffc107; /* amarillo */
+  border-left: 6px solid #ffc107;
+}
+
+.tarea-item.pendiente:hover {
+  box-shadow: 0 6px 14px rgba(255,193,7,0.25);
 }
 
 .tarea-item.completada {
-  border-left: 5px solid #28a745; /* verde */
-  background-color: #e6f4ea;
+  border-left: 6px solid #28a745;
+  background: #f0fdf4;
+}
+
+.tarea-item.completada:hover {
+  box-shadow: 0 6px 14px rgba(40,167,69,0.25);
 }
 
 /* ====== Contenido de la tarea ====== */
 .tarea-contenido {
   flex-grow: 1;
+  padding-right: 12px;
 }
 
 .tarea-titulo {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
-  margin: 0 0 5px 0;
-  color: #333;
+  margin: 0 0 6px 0;
+  color: #222;
 }
 
 .tarea-descripcion {
   font-size: 14px;
   color: #555;
   margin: 0;
+  line-height: 1.4;
 }
 
 /* ====== Botones de acción ====== */
 .tarea-acciones {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .tarea-estado,
 .tarea-editar,
 .tarea-eliminar {
-  background-color: transparent;
+  background: transparent;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  transition: transform 0.1s ease;
+  transition: transform 0.15s ease, color 0.2s ease;
+  padding: 6px;
+  border-radius: 50%;
 }
 
 .tarea-estado:hover,
 .tarea-editar:hover,
 .tarea-eliminar:hover {
-  transform: scale(1.2);
+  transform: scale(1.25);
+  background-color: rgba(0,0,0,0.05);
 }
 
+/* Colores de íconos */
 .tarea-estado {
   color: #007bff;
 }
-
 .tarea-editar {
   color: #ffc107;
 }
-
 .tarea-eliminar {
   color: #dc3545;
 }
 
 /* ====== Responsividad ====== */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .tarea-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
+    padding: 14px;
   }
 
   .tarea-acciones {
     align-self: flex-end;
+  }
+
+  .tarea-titulo {
+    font-size: 16px;
+  }
+
+  .tarea-descripcion {
+    font-size: 13px;
   }
 }

@@ -1,31 +1,45 @@
+/* ====== Animación de aparición ====== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ====== Contenedor del formulario ====== */
 #formRegistro {
   max-width: 450px;
-  margin: 30px auto;
-  padding: 25px;
-  background-color: #fefefe;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 40px auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInUp 0.6s ease;
 }
 
 /* ====== Título ====== */
 #tituloRegistro {
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  color: #333;
+  color: #222;
   margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 /* ====== Etiquetas ====== */
 #formRegistro label {
   font-weight: 600;
   font-size: 14px;
-  color: #333;
+  color: #444;
   margin-bottom: 5px;
 }
 
@@ -34,11 +48,12 @@
 #inputClave,
 #inputConfirmClave {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  padding: 12px 14px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
 }
 
 #inputUsuario:focus,
@@ -46,33 +61,36 @@
 #inputConfirmClave:focus {
   border-color: #007bff;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.35);
 }
 
 /* ====== Mensaje de error ====== */
 #mensajeErrorRegistro {
-  color: #dc3545; /* rojo */
+  color: #dc3545;
   font-size: 13px;
   font-weight: 500;
   text-align: center;
-  margin: 0;
+  margin-top: -5px;
 }
 
 /* ====== Botón Registrarse ====== */
 #btnRegistrarse {
-  padding: 10px 15px;
-  background-color: #007bff; /* azul */
+  padding: 12px 15px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.1s ease;
+  transition: all 0.3s ease;
 }
 
 #btnRegistrarse:hover:not(:disabled) {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #0056b3, #00408d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 91, 187, 0.4);
 }
 
 #btnRegistrarse:active:not(:disabled) {
@@ -80,15 +98,20 @@
 }
 
 #btnRegistrarse:disabled {
-  background-color: #aaa;
+  background: #bbb;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* ====== Responsividad ====== */
 @media (max-width: 500px) {
   #formRegistro {
-    padding: 15px;
-    max-width: 90%;
+    padding: 18px;
+    max-width: 92%;
+  }
+
+  #tituloRegistro {
+    font-size: 22px;
   }
 
   #btnRegistrarse {

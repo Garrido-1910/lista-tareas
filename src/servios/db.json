@@ -34,14 +34,19 @@
       "id": "bdd0",
       "usuario": "arroz",
       "clave": "123456"
+    },
+    {
+      "id": "3208",
+      "usuario": "Christopher",
+      "clave": "1234567"
     }
   ],
   "tareas": [
     {
-      "id": "6738",
-      "titulo": "jfpobkgro",
-      "descripcion": "sdkvbmtkhbrmtkf",
-      "estado": "pendiente"
+      "id": "88f4",
+      "titulo": "ab",
+      "descripcion": "ba",
+      "estado": "completada"
     }
   ]
 }

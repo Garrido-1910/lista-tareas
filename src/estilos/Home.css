@@ -1,15 +1,36 @@
-.bolita-perfil{
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 20px;
+/* Indicador circular (puede usarse como notificación o estado) */
+.bolita-perfil {
+  width: 22px;
+  height: 22px;
+  background: red;
+  border-radius: 50%;
+  border: 2px solid #fff; /* borde para contraste */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.mov-perfil{
-    position: absolute;
-    top: 10px;
-    right:1px;
+
+/* Posicionamiento en una esquina */
+.mov-perfil {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
 }
-.contenedor-todo{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+/* Contenedor general con grid */
+.contenedor-todo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* espacio entre columnas */
+  padding: 20px;
+  align-items: start;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .contenedor-todo {
+    grid-template-columns: 1fr; /* se vuelve una sola columna */
+  }
 }

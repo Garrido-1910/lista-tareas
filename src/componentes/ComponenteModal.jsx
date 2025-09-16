@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { patchData } from '../servios/Servicios';
+import "../estilos/ComponenteModal.css"
 
 function ComponenteModal({mostrar,ocultar}) {
     const [textoTitulo,setTextoTitulo] = useState("")

@@ -1,84 +1,120 @@
-/* Contenedor de cada tarea */
+/* ====== Contenedor de cada tarea ====== */
 .tarea-item {
   background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Hover elegante */
 .tarea-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
 /* Título */
 .tarea-titulo {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #2c3e50;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 /* Descripción */
 .tarea-descripcion {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 12px;
-  line-height: 1.4;
+  margin: 0;
+  line-height: 1.5;
 }
 
-/* Estado */
+/* Estado de tarea */
 .tarea-estado {
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #00796b;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
   margin-top: 10px;
+  transition: all 0.3s ease;
+  border: 2px solid #ccc;
 }
-.completada{
-  background-color: green;
+
+.tarea-estado.completada {
+  background-color: #28a745; /* verde */
+  border-color: #28a745;
+  animation: pulse 1s infinite alternate;
 }
-.pendiente{
-  background-color: yellowgreen;
+
+.tarea-estado.pendiente {
+  background-color: #ffc107; /* amarillo */
+  border-color: #ffc107;
+}
+
+/* Animación pulso para completada */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 /* Botones */
 .tarea-eliminar,
 .tarea-editar {
   display: inline-block;
-  padding: 8px 14px;
-  margin-right: 8px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: all 0.25s ease;
+  margin-right: 8px;
 }
 
 /* Botón eliminar */
 .tarea-eliminar {
-  background-color: #e53935;
-  color: white;
+  background: linear-gradient(135deg, #e53935, #c62828);
+  color: #fff;
 }
 
 .tarea-eliminar:hover {
-  background-color: #c62828;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(229,57,53,0.4);
 }
 
 /* Botón editar */
 .tarea-editar {
-  background-color: #1976d2;
-  color: white;
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+  color: #fff;
 }
 
 .tarea-editar:hover {
-  background-color: #0d47a1;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(13,71,161,0.4);
+}
+
+/* ====== Responsividad ====== */
+@media (max-width: 500px) {
+  .tarea-item {
+    padding: 14px;
+  }
+
+  .tarea-titulo {
+    font-size: 1.1rem;
+  }
+
+  .tarea-descripcion {
+    font-size: 0.95rem;
+  }
+
+  .tarea-eliminar,
+  .tarea-editar {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
 }
